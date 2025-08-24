@@ -1,0 +1,2 @@
+conda activate bgmv2
+python inference_webcam.py --model-type mattingrefine --model-backbone mobilenetv2 --model-checkpoint  "C:\Users\bery5\github\backgroundMattingV2\checkpoints\pytorch_mobilenetv2.pth" --resolution 1280 720
