@@ -1,0 +1,38 @@
+# inference_webcam.py 명령줄 사용법
+
+## 기본 형식
+python inference_webcam.py --model-type MODEL_TYPE --model-backbone BACKBONE --model-checkpoint CHECKPOINT_PATH [OPTIONS]
+
+## 필수 매개변수
+--model-type: mattingbase | mattingrefine
+--model-backbone: resnet101 | resnet50 | mobilenetv2  
+--model-checkpoint: 체크포인트 파일 경로 (예: "checkpoints/pytorch_mobilenetv2.pth")
+
+## 선택적 매개변수
+--model-backbone-scale: 백본 스케일 (기본값: 0.25)
+--model-refine-mode: full | sampling | thresholding (기본값: sampling)
+--model-refine-sample-pixels: 샘플 픽셀 수 (기본값: 80000)
+--model-refine-threshold: 임계값 (기본값: 0.7)
+--hide-fps: FPS 표시 숨김
+--resolution: 해상도 WIDTH HEIGHT (기본값: 1280 720)
+
+## 사용 예시
+
+### MobileNetV2 백본 사용
+python inference_webcam.py --model-type mattingrefine --model-backbone mobilenetv2 --model-checkpoint "checkpoints/pytorch_mobilenetv2.pth" --resolution 1280 720
+
+### ResNet50 백본 사용  
+python inference_webcam.py --model-type mattingrefine --model-backbone resnet50 --model-checkpoint "checkpoints/pytorch_resnet50.pth" --resolution 1920 1080
+
+### MattingBase 모델 사용
+python inference_webcam.py --model-type mattingbase --model-backbone resnet101 --model-checkpoint "checkpoints/pytorch_resnet101_base.pth"
+
+## 실행 중 조작법
+- B 키: 배경 캡처 모드와 매팅 모드 전환 (B를 누른 순간의 프레임이 배경으로 사용됨)
+- Q 키: 프로그램 종료
+
+## 참고사항
+- CUDA GPU 필요
+- 웹캠 연결 필요
+- 실행 시 처음에는 배경 수집 모드로 시작
+- B를 눌러 배경을 캡처한 후 실시간 매팅 수행
